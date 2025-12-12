@@ -1,0 +1,15 @@
+INSTRUKCJE: Dodaj 3 filmy animacji tutaj
+
+Aby aplikacja działała, musisz umieścić 3 filmy w tym folderze:
+
+1. waiting.mp4
+2. listening.mp4  
+3. responding.mp4
+
+Możesz tymczasowo użyć tego samego filmu dla wszystkich trzech stanów do testowania.
+
+UWAGA: 
+- Gdy uruchomisz aplikację bez filmów, zobaczysz błąd
+- Dodaj filmy aby zobaczyć pełną funkcjonalność
+- Szczegóły w /public/videos/README.md
+
