@@ -7,6 +7,8 @@
 import { useEffect, useState } from 'react';
 import { VideoPlayer } from './components/VideoPlayer';
 import { VoiceControls } from './components/VoiceControls';
+import { VoiceControlsRealtime } from './components/VoiceControlsRealtime';
+import { VoiceModeSwitch } from './components/VoiceModeSwitch';
 import { TranscriptionDisplay } from './components/TranscriptionDisplay';
 import { AudioPermissionGate } from './components/AudioPermissionGate';
 import { useAppStore } from '@/lib/store';
@@ -16,6 +18,7 @@ export default function Home() {
   const setCurrentCharacter = useAppStore((s) => s.setCurrentCharacter);
   const currentCharacter = useAppStore((s) => s.currentCharacter);
   const messages = useAppStore((s) => s.messages);
+  const voiceMode = useAppStore((s) => s.voiceMode);
   const [showTranscription, setShowTranscription] = useState(true);
 
   // Ustaw domyślną postać przy starcie
@@ -75,7 +78,15 @@ export default function Home() {
 
       {/* Controls - Fixed at Bottom */}
       <div className="fixed bottom-0 left-0 right-0 bg-gradient-to-t from-gray-950 via-gray-950/95 to-transparent">
-        <VoiceControls />
+        {/* Voice Mode Switch */}
+        <VoiceModeSwitch />
+        
+        {/* Voice Controls - conditional based on mode */}
+        {voiceMode === 'elevenlabs' ? (
+          <VoiceControls />
+        ) : (
+          <VoiceControlsRealtime />
+        )}
       </div>
       </main>
     </AudioPermissionGate>

@@ -51,7 +51,7 @@ Assistant: "Jestem postacią z tego przedstawienia. Moją pasją jest łączenie
   // Konfiguracja LLM
   llmConfig: {
     temperature: 0.8,        // Kreatywność (0.7-1.0)
-    maxTokens: 150,          // Krótsze odpowiedzi dla dialogu
+    maxTokens: 500,          // Więcej tokenów dla pełnych odpowiedzi
     model: 'gpt-5.2',        // Najnowszy model OpenAI (11.12.2025)
   },
 };

@@ -13,6 +13,11 @@ export type AppState = 'waiting' | 'listening' | 'processing' | 'responding';
 export type ProcessingSubState = 'transcribing' | 'thinking' | 'synthesizing';
 
 /**
+ * Tryb komunikacji głosowej
+ */
+export type VoiceMode = 'elevenlabs' | 'realtime';
+
+/**
  * Wiadomość w konwersacji
  */
 export interface Message {
@@ -117,6 +122,9 @@ export interface AppStore {
   isRecording: boolean;
   isPlaying: boolean;
   
+  // Voice mode (ElevenLabs vs OpenAI Realtime)
+  voiceMode: VoiceMode;
+  
   // Actions
   setState: (state: AppState) => void;
   setProcessingSubState: (subState: ProcessingSubState | null) => void;
@@ -124,6 +132,7 @@ export interface AppStore {
   setCurrentCharacter: (character: Character) => void;
   setIsRecording: (isRecording: boolean) => void;
   setIsPlaying: (isPlaying: boolean) => void;
+  setVoiceMode: (mode: VoiceMode) => void;
   resetConversation: () => void;
 }
 

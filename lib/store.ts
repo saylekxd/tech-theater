@@ -3,7 +3,7 @@
 // ============================================================================
 
 import { create } from 'zustand';
-import { AppStore, AppState, ProcessingSubState, Message, Character } from './types';
+import { AppStore, AppState, ProcessingSubState, Message, Character, VoiceMode } from './types';
 
 /**
  * Główny store aplikacji używający Zustand
@@ -16,6 +16,7 @@ export const useAppStore = create<AppStore>((set) => ({
   currentCharacter: null,
   isRecording: false,
   isPlaying: false,
+  voiceMode: 'elevenlabs', // Default to ElevenLabs (existing behavior)
 
   // Actions
   setState: (state: AppState) => set({ state }),
@@ -36,6 +37,9 @@ export const useAppStore = create<AppStore>((set) => ({
   
   setIsPlaying: (isPlaying: boolean) => 
     set({ isPlaying }),
+  
+  setVoiceMode: (mode: VoiceMode) => 
+    set({ voiceMode: mode }),
   
   resetConversation: () => 
     set({ 
