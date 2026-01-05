@@ -16,7 +16,7 @@ export const useAppStore = create<AppStore>((set) => ({
   currentCharacter: null,
   isRecording: false,
   isPlaying: false,
-  voiceMode: 'elevenlabs', // Default to ElevenLabs (existing behavior)
+  voiceMode: 'realtime', // Prefer Realtime API by default
 
   // Actions
   setState: (state: AppState) => set({ state }),

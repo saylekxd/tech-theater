@@ -194,8 +194,6 @@ export function VideoPlayer({
         <div className="absolute inset-0 flex items-center justify-center bg-gray-900 z-20">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
-            <div className="text-white text-lg">Ładowanie animacji...</div>
-            <div className="text-gray-400 text-sm mt-2">Przygotowywanie filmów postaci</div>
           </div>
         </div>
       )}
@@ -203,20 +201,14 @@ export function VideoPlayer({
       {/* Error State */}
       {loadError && !isLoading && (
         <div className="absolute inset-0 flex items-center justify-center bg-red-900/20 z-20">
-          <div className="text-center p-6 bg-gray-900 rounded-lg">
-            <div className="text-red-500 text-xl mb-2">⚠️ Błąd ładowania</div>
-            <div className="text-white text-sm">{loadError}</div>
-            <div className="text-gray-400 text-xs mt-2">
-              Sprawdź czy filmy są w folderze /public/videos/
-            </div>
-          </div>
+          <div className="text-center p-6 bg-gray-900 rounded-lg text-3xl text-red-500">⚠️</div>
         </div>
       )}
       
       {/* Primary Video */}
       <video
         ref={primaryVideoRef}
-        className={`w-full h-full object-contain transition-opacity duration-500 ${
+        className={`w-full h-full object-cover transition-opacity duration-500 ${
           isTransitioning ? 'opacity-50' : 'opacity-100'
         }`}
         loop

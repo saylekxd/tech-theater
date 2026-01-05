@@ -163,16 +163,6 @@ export function VoiceControlsRealtime() {
     interrupt();
   }, [interrupt]);
 
-  // Status text - use realtimeState from hook for accurate UI
-  const getStatusText = () => {
-    if (!isConnected) return 'Łączenie...';
-    if (!isConversationActive) return 'Naciśnij aby rozpocząć rozmowę';
-    if (realtimeState === 'listening' || isListening) return 'Słucham... (mów)';
-    if (realtimeState === 'thinking') return 'Myślę...';
-    if (realtimeState === 'speaking' || isSpeaking) return 'Odpowiadam...';
-    return 'Rozmowa aktywna';
-  };
-  
   // Determine current display state
   const displayState = (() => {
     if (!isConnected) return 'connecting';
@@ -205,11 +195,6 @@ export function VoiceControlsRealtime() {
   if (!isConnected) {
     return (
       <div className="flex flex-col items-center gap-6 p-8">
-        <div className="text-center">
-          <p className="text-2xl font-semibold text-gray-800 dark:text-gray-200">
-            Łączenie z Realtime API...
-          </p>
-        </div>
         <div className="w-24 h-24 rounded-full bg-gray-400 flex items-center justify-center">
           <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-white"></div>
         </div>
@@ -219,18 +204,6 @@ export function VoiceControlsRealtime() {
 
   return (
     <div className="flex flex-col items-center gap-6 p-8">
-      {/* Status Text */}
-      <div className="text-center">
-        <p className="text-2xl font-semibold text-gray-800 dark:text-gray-200">
-          {getStatusText()}
-        </p>
-        {displayState === 'thinking' && (
-          <p className="text-sm text-gray-500 mt-2">
-            Proszę czekać...
-          </p>
-        )}
-      </div>
-
       {/* Main Button */}
       <div className="relative">
         {/* Start conversation button - only shown when not in conversation */}
@@ -327,14 +300,6 @@ export function VoiceControlsRealtime() {
             <MicrophoneIcon />
           </button>
         )}
-      </div>
-
-      {/* Connection indicator */}
-      <div className="flex items-center gap-2">
-        <div className={`w-2 h-2 rounded-full ${isConnected ? 'bg-green-500' : 'bg-red-500'}`}></div>
-        <span className="text-xs text-gray-500">
-          {isConnected ? 'Połączono z Realtime API' : 'Rozłączono'}
-        </span>
       </div>
     </div>
   );

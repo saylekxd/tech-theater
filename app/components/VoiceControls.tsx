@@ -261,20 +261,6 @@ export function VoiceControls() {
     setProcessingSubState(null);
   }, [isAudioPlaying, stopAudio, setState, setProcessingSubState]);
 
-  // Status text
-  const getStatusText = () => {
-    if (state === 'waiting') return 'Naciśnij aby mówić';
-    if (state === 'listening') return 'Słucham...';
-    if (state === 'processing') {
-      if (processingSubState === 'transcribing') return 'Rozpoznaję mowę...';
-      if (processingSubState === 'thinking') return 'Myślę...';
-      if (processingSubState === 'synthesizing') return 'Przygotowuję odpowiedź...';
-      return 'Przetwarzam...';
-    }
-    if (state === 'responding') return 'Odpowiadam...';
-    return '';
-  };
-
   // Show error if any
   if (recordingError || audioError) {
     const error = recordingError || audioError;
@@ -298,18 +284,6 @@ export function VoiceControls() {
 
   return (
     <div className="flex flex-col items-center gap-6 p-8">
-      {/* Status Text */}
-      <div className="text-center">
-        <p className="text-2xl font-semibold text-gray-800 dark:text-gray-200">
-          {getStatusText()}
-        </p>
-        {state === 'processing' && (
-          <p className="text-sm text-gray-500 mt-2">
-            Proszę czekać...
-          </p>
-        )}
-      </div>
-
       {/* Main Button */}
       <div className="relative">
         {state === 'waiting' && (

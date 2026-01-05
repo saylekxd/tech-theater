@@ -50,15 +50,15 @@ export function AudioPermissionGate({ children }: AudioPermissionGateProps) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-950/95 backdrop-blur-sm">
       <div className="max-w-md p-8 bg-gray-900 rounded-xl shadow-2xl text-center">
-        <div className="text-6xl mb-6">🎭</div>
-        <h1 className="text-3xl font-bold mb-4">Tech Theater</h1>
-        <p className="text-gray-300 mb-6">
-          Witaj w interaktywnym teatrze z AI!
-        </p>
-        <p className="text-gray-400 text-sm mb-8">
-          Kliknij poniżej aby rozpocząć głosową rozmowę z postacią teatralną.
-          Będziesz potrzebować mikrofonu i głośników.
-        </p>
+        <div className="text-6xl mb-8">🎭</div>
+        <ol className="text-left text-gray-300 text-sm space-y-3 mb-8 list-decimal list-inside">
+          <li>Naciśnij na zielony przycisk, kiedy chcesz wejść w interakcję z modelem.</li>
+          <li>Kiedy jesteś w konwersacji, nie naciskaj wyłączenia mikrofonu.</li>
+          <li>
+            Kiedy kończysz konwersację i już nie będziesz rozmawiać z modelem, naciśnij z powrotem przycisk
+            mikrofonu.
+          </li>
+        </ol>
         <button
           onClick={handleUnlock}
           className="
@@ -71,11 +71,8 @@ export function AudioPermissionGate({ children }: AudioPermissionGateProps) {
             focus:outline-none focus:ring-4 focus:ring-blue-300
           "
         >
-          🎤 Rozpocznij rozmowę
+          Naciśnij żeby rozpocząć
         </button>
-        <p className="text-gray-500 text-xs mt-4">
-          Aplikacja wymaga dostępu do mikrofonu
-        </p>
       </div>
     </div>
   );
