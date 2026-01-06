@@ -77,7 +77,17 @@ export function VideoPlayer({
       };
 
       video.onerror = (e) => {
-        console.error(`Error loading video: ${state}`, e);
+        // Avoid logging the entire Event object (very noisy); surface actionable info instead.
+        const mediaError = video.error;
+        console.error(`Error loading video: ${state}`, {
+          src,
+          currentSrc: video.currentSrc,
+          mediaErrorCode: mediaError?.code ?? null,
+          mediaErrorMessage: (mediaError as any)?.message ?? null,
+          networkState: video.networkState,
+          readyState: video.readyState,
+          eventType: (e as Event)?.type,
+        });
         setLoadError(`Failed to load ${state} video`);
         loadedCount++;
         
